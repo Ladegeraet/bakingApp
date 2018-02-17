@@ -1,5 +1,6 @@
 package name.oho.baking;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,8 +17,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import name.oho.baking.model.Receipt;
 import name.oho.baking.network.BakingService;
-import name.oho.baking.ui.ReceiptAdapter;
-import name.oho.baking.ui.ReceiptRecyclerView;
+import name.oho.baking.ui.main.ReceiptAdapter;
+import name.oho.baking.ui.main.ReceiptRecyclerView;
+import name.oho.baking.ui.receipt.ReceiptListActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements ReceiptAdapter.Li
     @Override
     public void onListItemClick(int listItemIndex) {
         Timber.d(String.valueOf(listItemIndex));
+        Intent intent = new Intent(this, ReceiptListActivity.class);
+        startActivity(intent);
     }
 
     class BakingServiceCallback implements Callback<List<Receipt>> {
