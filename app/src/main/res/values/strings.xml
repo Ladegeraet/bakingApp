@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">Baking</string>
-    <string name="title_receipt_list">Receipts</string>
-    <string name="title_receipt_detail">Receipt Detail</string>
 </resources>

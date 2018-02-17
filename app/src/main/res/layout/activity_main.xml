@@ -7,12 +7,12 @@
     android:layout_margin="8dp"
     tools:context="name.oho.baking.MainActivity">
 
-    <name.oho.baking.ui.main.ReceiptRecyclerView
+    <name.oho.baking.ui.ReceiptRecyclerView
         android:id="@+id/rv_receipts"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </name.oho.baking.ui.main.ReceiptRecyclerView>
+    </name.oho.baking.ui.ReceiptRecyclerView>
 
     <ProgressBar
         android:id="@+id/pg_loadingIndicator"

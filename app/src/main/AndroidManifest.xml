@@ -19,19 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.receipt.ReceiptListActivity"
-            android:label="@string/title_receipt_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".ui.receipt.ReceiptDetailActivity"
-            android:label="@string/title_receipt_detail"
-            android:parentActivityName=".ui.receipt.ReceiptListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="name.oho.baking.ui.receipt.ReceiptListActivity" />
-        </activity>
     </application>
 
 </manifest>

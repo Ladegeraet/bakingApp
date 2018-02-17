@@ -1,4 +1,4 @@
-package name.oho.baking.ui.main;
+package name.oho.baking.ui;
 
 import android.content.Context;
 import android.os.Bundle;
