@@ -3,17 +3,20 @@ package name.oho.baking.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Ingredient {
 
     @SerializedName("quantity")
     @Expose
-    private float quantity;
+    float quantity;
     @SerializedName("measure")
     @Expose
-    private String measure;
+    String measure;
     @SerializedName("ingredient")
     @Expose
-    private String ingredient;
+    String ingredient;
 
     public float getQuantity() {
         return quantity;

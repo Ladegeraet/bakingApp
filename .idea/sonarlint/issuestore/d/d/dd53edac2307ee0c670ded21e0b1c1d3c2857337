@@ -1,0 +1,10 @@
+
+esquid:UselessImportCheck"7Remove this unused import 'name.oho.baking.model.Step'.(´£ô¬üÿÿÿÿ8ë²àÕš,
+¢squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(í¬£½ÿÿÿÿÿ8±ÈíÕš,
+Ksquid:S00108")Either remove or fill this block of code.(ÈÊ¤Õøÿÿÿÿ8˜àÄÔš,
+lsquid:UselessImportCheck"CRemove this unused import 'android.support.v7.widget.RecyclerView'.(ÊŠáó8ÒÓÇÕš,
+ssquid:S1450"WRemove the "mReceipt" field and declare it as a local variable in the relevant methods.(õç8Ş¢âÕš,
+Ysquid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ë²àÕš,
+csquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(ŸŸç­
+xsquid:S1450"WRemove the "mTwoPane" field and declare it as a local variable in the relevant methods.(¬óª¡ùÿÿÿÿ8ÂŒìÕš,
+gsquid:UselessImportCheck"9Remove this unused import 'name.oho.baking.MainActivity'.(ááÌ£ıÿÿÿÿ8¼ë’Öš,

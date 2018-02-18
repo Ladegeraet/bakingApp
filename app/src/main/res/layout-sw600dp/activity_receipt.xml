@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
+
+    <fragment
+        android:id="@+id/fr_receipt_list_master"
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:name="name.oho.baking.ui.receipt.ReceiptMasterListFragment" />
+
+    <View style="@style/Divider"/>
+
+    <fragment
+        android:id="@+id/fr_step_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="name.oho.baking.ui.receipt.StepDetailFragment"/>
+
+</LinearLayout>

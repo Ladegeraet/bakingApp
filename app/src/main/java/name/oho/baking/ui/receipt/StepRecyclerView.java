@@ -1,4 +1,4 @@
-package name.oho.baking.ui;
+package name.oho.baking.ui.receipt;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,25 +8,25 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 /**
- * Created by tobi on 17.02.18.
+ * Created by tobi on 18.02.18.
  */
 
-public class ReceiptRecyclerView extends RecyclerView {
+public class StepRecyclerView extends RecyclerView {
 
     private static final String SAVED_SUPER_STATE = "super-state";
     private static final String SAVED_LAYOUT_MANAGER = "layout-manager-state";
 
     private Parcelable mLayoutManagerSavedState;
 
-    public ReceiptRecyclerView(Context context) {
+    public StepRecyclerView(Context context) {
         super(context);
     }
 
-    public ReceiptRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public StepRecyclerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ReceiptRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public StepRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

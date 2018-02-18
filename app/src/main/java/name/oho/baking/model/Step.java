@@ -3,23 +3,26 @@ package name.oho.baking.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Step {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    Integer id;
     @SerializedName("shortDescription")
     @Expose
-    private String shortDescription;
+    String shortDescription;
     @SerializedName("description")
     @Expose
-    private String description;
+    String description;
     @SerializedName("videoURL")
     @Expose
-    private String videoURL;
+    String videoURL;
     @SerializedName("thumbnailURL")
     @Expose
-    private String thumbnailURL;
+    String thumbnailURL;
 
     public Integer getId() {
         return id;

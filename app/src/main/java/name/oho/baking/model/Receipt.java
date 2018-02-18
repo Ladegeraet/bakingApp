@@ -1,31 +1,35 @@
 package name.oho.baking.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+@Parcel
 public class Receipt {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    Integer id;
     @SerializedName("name")
     @Expose
-    private String name;
+    String name;
     @SerializedName("ingredients")
     @Expose
-    private List<Ingredient> ingredients = null;
+    List<Ingredient> ingredients = null;
     @SerializedName("steps")
     @Expose
-    private List<Step> steps = null;
+    List<Step> steps = null;
     @SerializedName("servings")
     @Expose
-    private Integer servings;
+    Integer servings;
     @SerializedName("image")
     @Expose
-    private String image;
+    String image;
 
     public Integer getId() {
         return id;

@@ -1,4 +1,4 @@
-package name.oho.baking.ui;
+package name.oho.baking.ui.main;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +24,7 @@ import name.oho.baking.network.PicassoVideoRequestHandler;
  * Created by tobi on 17.02.18.
  */
 
-public class ReceiptAdapter extends ReceiptRecyclerView.Adapter<ReceiptAdapter.ReceiptViewHolder> {
+public class ReceiptOverviewAdapter extends ReceiptOverviewRecyclerView.Adapter<ReceiptOverviewAdapter.ReceiptOverviewViewHolder> {
 
     private int mNumberItems;
     private List<Receipt> mReceiptList;
@@ -35,7 +35,7 @@ public class ReceiptAdapter extends ReceiptRecyclerView.Adapter<ReceiptAdapter.R
         void onListItemClick(int listItemIndex);
     }
 
-    public ReceiptAdapter(List<Receipt> receiptList, ListItemClickListener onClickListener) {
+    public ReceiptOverviewAdapter(List<Receipt> receiptList, ListItemClickListener onClickListener) {
         if (receiptList == null) {
             receiptList = new ArrayList<>();
         }
@@ -46,19 +46,17 @@ public class ReceiptAdapter extends ReceiptRecyclerView.Adapter<ReceiptAdapter.R
     }
 
     @Override
-    public ReceiptViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ReceiptOverviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
 
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View view = inflater.inflate(R.layout.receipt_list_item, parent, false);
-        ReceiptViewHolder viewHolder = new ReceiptViewHolder(view);
-
-        return viewHolder;
+        View view = inflater.inflate(R.layout.receipt_overview_list_item, parent, false);
+        return new ReceiptOverviewViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ReceiptViewHolder holder, int position) {
+    public void onBindViewHolder(ReceiptOverviewViewHolder holder, int position) {
         holder.bind(mReceiptList.get(position));
     }
 
@@ -68,7 +66,7 @@ public class ReceiptAdapter extends ReceiptRecyclerView.Adapter<ReceiptAdapter.R
     }
 
 
-    public class ReceiptViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ReceiptOverviewViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.iv_receipt_poster)
         ImageView poster;
@@ -76,7 +74,7 @@ public class ReceiptAdapter extends ReceiptRecyclerView.Adapter<ReceiptAdapter.R
         @BindView(R.id.tv_receipt_name)
         TextView name;
 
-        public ReceiptViewHolder(View itemView) {
+        public ReceiptOverviewViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
