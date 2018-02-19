@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/list_item_vertical_padding"
+    android:paddingBottom="@dimen/list_item_vertical_padding"
+    android:paddingStart="@dimen/list_item_horizontal_padding"
+    android:paddingEnd="@dimen/list_item_horizontal_padding">
+
+    <TextView
+        android:id="@+id/tv_ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Graham Cracker crumbs"/>
+
+    <TextView
+        android:id="@+id/tv_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/tv_ingredient"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ingredient"
+        tools:text="2" />
+
+    <TextView
+        android:id="@+id/tv_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/list_item_vertical_padding"
+        app:layout_constraintStart_toEndOf="@id/tv_quantity"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ingredient"
+        tools:text="CUP"/>
+
+</android.support.constraint.ConstraintLayout>

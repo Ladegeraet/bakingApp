@@ -51,7 +51,7 @@ public class ReceiptActivity extends AppCompatActivity implements StepAdapter.St
         setTitle(mReceipt.getName());
 
         mStepRecyclerView.setLayoutManager(new LinearLayoutManager(this, OrientationHelper.VERTICAL, false));
-        mStepAdapter = new StepAdapter(mReceipt.getSteps(), this);
+        mStepAdapter = new StepAdapter(mReceipt.getSteps(), mReceipt.getIngredients(), this);
 
         mStepRecyclerView.setAdapter(mStepAdapter);
 

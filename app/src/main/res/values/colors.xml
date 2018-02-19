@@ -6,4 +6,7 @@
 
     <!-- https://stackoverflow.com/a/16890937 -->
     <color name="transparentBlack">#99000000</color>
+
+    <color name="ingredient_light_background">#ffffff</color>
+    <color name="ingredient_dark_background">#dfdfdf</color>
 </resources>
