@@ -1,11 +1,15 @@
 package name.oho.baking.ui.receipt;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
+import android.view.View;
 import android.widget.TextView;
+
+import com.github.slashrootv200.exoplayerfragment.ExoPlayerFragment;
 
 import org.parceler.Parcels;
 
@@ -64,6 +68,18 @@ public class ReceiptActivity extends AppCompatActivity implements StepAdapter.St
 
     private void showStepDetail(Step step) {
         mStepDescription.setText(step.getDescription());
+        View exoPlayerContainer = findViewById(R.id.exoplayer_container);
+
+        Uri videoUri = Uri.parse(step.getVideoURL());
+        if (!videoUri.toString().isEmpty()) {
+            exoPlayerContainer.setVisibility(View.VISIBLE);
+            String videoTitle = step.getDescription();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.exoplayer_container, ExoPlayerFragment.newInstance(videoUri, videoTitle), ExoPlayerFragment.TAG)
+                    .commit();
+        } else {
+            exoPlayerContainer.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -77,6 +93,5 @@ public class ReceiptActivity extends AppCompatActivity implements StepAdapter.St
             intent.putExtra(StepDetailActivity.STEP_EXTRA, listItemIndex);
             startActivity(intent);
         }
-
     }
 }

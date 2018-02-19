@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <bool name="isLargeDevice">false</bool>
+
+    <bool name="exo_fragment_lib_show_video_selector">false</bool>
+    <bool name="exo_fragment_lib_show_audio_selector">false</bool>
+    <bool name="exo_fragment_lib_show_text_selector">false</bool>
 </resources>

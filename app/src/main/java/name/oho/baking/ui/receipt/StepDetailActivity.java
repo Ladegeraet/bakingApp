@@ -1,9 +1,15 @@
 package name.oho.baking.ui.receipt;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.github.slashrootv200.exoplayerfragment.ExoPlayerFragment;
 
 import org.parceler.Parcels;
 
@@ -21,6 +27,9 @@ public class StepDetailActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_step_description)
     TextView mStepDescription;
+
+    @BindView(R.id.exoplayer_container)
+    FrameLayout exoplayerContainer;
 
     private Receipt mReceipt;
     private int mStep;
@@ -43,6 +52,23 @@ public class StepDetailActivity extends AppCompatActivity {
             return;
         }
 
-        mStepDescription.setText(mCurrentStep.getDescription());
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mStepDescription.setVisibility(View.GONE);
+        } else {
+            mStepDescription.setText(mCurrentStep.getDescription());
+        }
+
+
+        if (savedInstanceState == null) {
+            Uri videoUri = Uri.parse(mCurrentStep.getVideoURL());
+            if (!videoUri.toString().isEmpty()) {
+                String videoTitle = mCurrentStep.getDescription();
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.exoplayer_container, ExoPlayerFragment.newInstance(videoUri, videoTitle), ExoPlayerFragment.TAG)
+                        .commit();
+            } else {
+                exoplayerContainer.setVisibility(View.GONE);
+            }
+        }
     }
 }
