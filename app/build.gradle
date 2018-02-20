@@ -58,7 +58,7 @@ dependencies {
     annotationProcessor 'org.parceler:parceler:1.1.9'
 
     //Exoplayer
-    implementation 'com.github.slashrootv200:exo-player-fragment-lib:0.0.3'
+    implementation 'com.google.android.exoplayer:exoplayer:2.6.1'
 
     // Android Support
     implementation 'com.android.support:appcompat-v7:26.1.0'

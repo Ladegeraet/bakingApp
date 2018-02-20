@@ -5,20 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/exoplayer_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@android:color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tv_step_description">
-    </FrameLayout>
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tv_step_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:paddingTop="@dimen/list_item_vertical_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exoplayer_container"
         tools:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam" />
