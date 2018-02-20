@@ -15,7 +15,7 @@ android:
     - android-26
 
     # Emulator
-    -sys-img-armeabi-v7a-android-22
+    - sys-img-armeabi-v7a-android-22
 
     # Additional components
     - extra-google-google_play_services
