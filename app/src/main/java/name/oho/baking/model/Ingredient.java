@@ -42,4 +42,8 @@ public class Ingredient {
         this.ingredient = ingredient;
     }
 
+    @Override
+    public String toString() {
+        return "- " + quantity + " " + measure + " - " + ingredient + "\n";
+    }
 }
