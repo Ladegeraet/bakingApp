@@ -48,6 +48,7 @@ public class ReceiptActivity extends AppCompatActivity implements StepAdapter.St
     private Receipt mReceipt;
 
     private boolean mTwoPane;
+
     private Step mCurrentStep;
 
     @Override

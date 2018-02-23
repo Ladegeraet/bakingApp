@@ -3,6 +3,10 @@ package name.oho.baking;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
@@ -17,6 +21,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import name.oho.baking.idlingResource.SimpleIdlingResource;
 import name.oho.baking.model.Receipt;
 import name.oho.baking.network.BakingService;
 import name.oho.baking.ui.main.ReceiptOverviewAdapter;
@@ -43,6 +48,28 @@ public class MainActivity extends AppCompatActivity implements ReceiptOverviewAd
     private List<Receipt> mReceiptList;
     private ReceiptOverviewAdapter mReceiptOverviewAdapter;
 
+    @Nullable
+    private SimpleIdlingResource mIdlingResource;
+
+    /**
+     * Only called from test, creates and returns a new {@link SimpleIdlingResource}.
+     */
+    //@VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new SimpleIdlingResource();
+        }
+        return mIdlingResource;
+    }
+
+    @VisibleForTesting
+    @NonNull
+    public int getRecyclerViewItemCount() {
+        return mReceiptList.size();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements ReceiptOverviewAd
 
         mLoadingIndicator.setVisibility(View.VISIBLE);
 
+        getIdlingResource();
+        if (mIdlingResource != null) {
+            mIdlingResource.setIdleState(false);
+        }
+
         mBakingService.receipts().enqueue(mBakingServiceCallback);
     }
 
@@ -86,6 +118,18 @@ public class MainActivity extends AppCompatActivity implements ReceiptOverviewAd
 
             mReceiptOverviewAdapter = new ReceiptOverviewAdapter(mReceiptList, MainActivity.this);
             mReceiptOverviewRecyclerView.setAdapter(mReceiptOverviewAdapter);
+
+            /**
+             * The IdlingResource is null in production as set by the @Nullable annotation which means
+             * the value is allowed to be null.
+             *
+             * If the idle state is true, Espresso can perform the next action.
+             * If the idle state is false, Espresso will wait until it is true before
+             * performing the next action.
+             */
+            if (mIdlingResource != null) {
+                mIdlingResource.setIdleState(true);
+            }
 
             mLoadingIndicator.setVisibility(View.INVISIBLE);
         }
