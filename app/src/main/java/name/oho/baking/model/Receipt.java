@@ -90,4 +90,15 @@ public class Receipt {
         return "";
     }
 
+    public String findLastThumbnailURL(){
+        List<Step> reversedSteps = new ArrayList<>(steps);
+        Collections.reverse(reversedSteps);
+        for (Step step:reversedSteps) {
+            if (!step.getThumbnailURL().isEmpty()) {
+                return step.getThumbnailURL();
+            }
+        }
+        return "";
+    }
+
 }

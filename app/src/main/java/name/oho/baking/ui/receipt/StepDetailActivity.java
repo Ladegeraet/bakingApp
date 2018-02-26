@@ -33,7 +33,9 @@ import name.oho.baking.model.Receipt;
 import name.oho.baking.model.Step;
 import timber.log.Timber;
 
+import static name.oho.baking.ui.receipt.ReceiptActivity.NOT_STARTED_POSITION;
 import static name.oho.baking.ui.receipt.ReceiptActivity.RECEIPT_EXTRA;
+import static name.oho.baking.ui.receipt.ReceiptActivity.VIDEO_POSITION;
 
 public class StepDetailActivity extends AppCompatActivity {
 
@@ -56,6 +58,8 @@ public class StepDetailActivity extends AppCompatActivity {
     private Receipt mReceipt;
     private int mStep;
     private Step mCurrentStep;
+
+    private long mPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,10 @@ public class StepDetailActivity extends AppCompatActivity {
             mStepDescription.setVisibility(View.GONE);
         } else {
             mStepDescription.setVisibility(View.VISIBLE);
+        }
+
+        if (savedInstanceState != null) {
+            mPosition = savedInstanceState.getLong(VIDEO_POSITION, NOT_STARTED_POSITION);
         }
 
         initView();
@@ -137,10 +145,16 @@ public class StepDetailActivity extends AppCompatActivity {
         MediaSource mediaSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(
                 this, userAgent), new DefaultExtractorsFactory(), null, null);
         mExoPlayer.prepare(mediaSource);
+
+        if (mPosition > NOT_STARTED_POSITION) {
+            mExoPlayer.setPlayWhenReady(true);
+            mExoPlayer.seekTo(mPosition);
+        }
     }
 
     private void releasePlayer() {
         if (mExoPlayer != null) {
+            mPosition = mExoPlayer.getCurrentPosition();
             mExoPlayer.release();
             mExoPlayer = null;
         }
@@ -179,5 +193,19 @@ public class StepDetailActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        savedInstanceState.putLong(VIDEO_POSITION, mPosition);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        mPosition = savedInstanceState.getLong(VIDEO_POSITION, NOT_STARTED_POSITION);
     }
 }

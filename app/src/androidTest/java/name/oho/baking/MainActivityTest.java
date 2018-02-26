@@ -53,22 +53,15 @@ public class MainActivityTest {
     }
 
     @Test
-    public void checkLastItem() {
+    public void checkViews() {
         onView(ViewMatchers.withId(R.id.rv_receipts)).perform(RecyclerViewActions.scrollToPosition(mActivityTestRule.getActivity().getRecyclerViewItemCount() - 1));
         onView(withText("Cheesecake")).check(matches(isDisplayed()));
-    }
 
-    @Test
-    public void clickLastItem() {
         onView(withId(R.id.rv_receipts))
                 .perform(RecyclerViewActions.actionOnItem(
                         hasDescendant(withText("Cheesecake")), click()));
-
-        intended(hasComponent(new ComponentName(getTargetContext(), ReceiptActivity.class)));
         // Receipt View
-        onView(withText("Recipe Introduction")).check(matches(isDisplayed()));
-
-        ReceiptActivity receiptActivity = (ReceiptActivity) getTargetContext();
+        onView(withId(R.id.rv_steps)).check(matches(hasDescendant(withText("Recipe Introduction"))));
 
         onView(ViewMatchers.withId(R.id.rv_steps)).perform(RecyclerViewActions.scrollToPosition(0));
     }

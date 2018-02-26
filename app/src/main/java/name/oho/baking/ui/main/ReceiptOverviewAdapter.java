@@ -82,11 +82,22 @@ public class ReceiptOverviewAdapter extends ReceiptOverviewRecyclerView.Adapter<
         }
 
         public void bind(Receipt receipt) {
-            Picasso picasso = new Picasso.Builder(itemView.getContext()).addRequestHandler(new PicassoVideoRequestHandler()).build();
-            picasso.load(receipt.findLastVideoURL())
-                    .placeholder(R.drawable.pexels)
-                    .error(R.drawable.ic_error)
-                    .into(poster);
+
+            String imageUrl = receipt.findLastThumbnailURL();
+
+            if (imageUrl.isEmpty()) {
+                Picasso picasso = new Picasso.Builder(itemView.getContext()).addRequestHandler(new PicassoVideoRequestHandler()).build();
+                picasso.load(receipt.findLastVideoURL())
+                        .placeholder(R.drawable.pexels)
+                        .error(R.drawable.ic_error)
+                        .into(poster);
+            } else {
+                Picasso.with(itemView.getContext())
+                        .load(imageUrl)
+                        .placeholder(R.drawable.pexels)
+                        .error(R.drawable.ic_error)
+                        .into(poster);
+            }
 
             name.setText(receipt.getName());
         }

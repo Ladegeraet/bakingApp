@@ -33,6 +33,9 @@ import timber.log.Timber;
 public class ReceiptActivity extends AppCompatActivity implements StepAdapter.StepItemClickListener {
 
     public static final String RECEIPT_EXTRA = "receipt_extra";
+    protected static final String VIDEO_POSITION = "currentPosition";
+
+    protected static final long NOT_STARTED_POSITION = -1;
 
     @BindView(R.id.rv_steps)
     StepRecyclerView mStepRecyclerView;
@@ -50,6 +53,9 @@ public class ReceiptActivity extends AppCompatActivity implements StepAdapter.St
     private boolean mTwoPane;
 
     private Step mCurrentStep;
+
+    private long mPosition;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,10 @@ public class ReceiptActivity extends AppCompatActivity implements StepAdapter.St
         } else {
             onBackPressed();
             return;
+        }
+
+        if (savedInstanceState != null) {
+            mPosition = savedInstanceState.getLong(VIDEO_POSITION, NOT_STARTED_POSITION);
         }
 
         setTitle(mReceipt.getName());
@@ -141,10 +151,16 @@ public class ReceiptActivity extends AppCompatActivity implements StepAdapter.St
         MediaSource mediaSource = new ExtractorMediaSource(uri, new DefaultDataSourceFactory(
                 this, userAgent), new DefaultExtractorsFactory(), null, null);
         mExoPlayer.prepare(mediaSource);
+
+        if (mPosition > NOT_STARTED_POSITION) {
+            mExoPlayer.setPlayWhenReady(true);
+            mExoPlayer.seekTo(mPosition);
+        }
     }
 
     private void releasePlayer() {
         if (mExoPlayer != null) {
+            mPosition = mExoPlayer.getCurrentPosition();
             mExoPlayer.release();
             mExoPlayer = null;
         }
@@ -160,5 +176,19 @@ public class ReceiptActivity extends AppCompatActivity implements StepAdapter.St
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        savedInstanceState.putLong(VIDEO_POSITION, mPosition);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        mPosition = savedInstanceState.getLong(VIDEO_POSITION, NOT_STARTED_POSITION);
     }
 }
